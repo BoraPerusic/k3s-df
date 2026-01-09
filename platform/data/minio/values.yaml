@@ -1,12 +1,28 @@
 # minio-values.yaml
 auth:
-  rootUser: "admin"
-  rootPassword: "SafePassword123!" # CHANGE THIS
+  rootUser: "bora"
+  rootPassword: "bora" # CHANGE THIS
 persistence:
-  size: 200Gi # Shared pool for logs/metrics/traces
+  size: 50Gi # Shared pool for logs/metrics/traces
 resources:
   requests:
     memory: "1Gi"
     cpu: "500m"
   limits:
-    memory: "4Gi"
+    memory: "2Gi"
+
+  # AUTOMATIC BUCKET CREATION
+  provisioning:
+    enabled: true
+    resources:
+      requests:
+        memory: "128Mi"
+    # This script runs inside a "mc" (MinIO Client) container
+    extraCommands:
+      - mc alias set local http://minio.data.svc:9000 admin SafePassword123!
+      # Logs
+      - mc mb --ignore-existing local/loki-chunks
+      - mc mb --ignore-existing local/loki-ruler
+      - mc mb --ignore-existing local/loki-admin
+      # Traces
+      - mc mb --ignore-existing local/tempo-traces
