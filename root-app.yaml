@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd
+spec:
+  project: platform-ops  # <--- CHANGED FROM 'default'
+  source:
+    repoURL: 'git@github.com/BoraPerusic/k3s-df.git'
+    targetRevision: HEAD
+    path: apps/templates
+  destination:
+    server: 'https://kubernetes.default.svc' # <--- KEEP THIS (It points to local K3s)
+    namespace: argocd
