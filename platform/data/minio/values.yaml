@@ -1,0 +1,12 @@
+# minio-values.yaml
+auth:
+  rootUser: "admin"
+  rootPassword: "SafePassword123!" # CHANGE THIS
+persistence:
+  size: 200Gi # Shared pool for logs/metrics/traces
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "500m"
+  limits:
+    memory: "4Gi"
