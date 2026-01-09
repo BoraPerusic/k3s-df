@@ -6,7 +6,7 @@ metadata:
 spec:
   project: platform-ops  # <--- CHANGED FROM 'default'
   source:
-    repoURL: 'git@github.com/BoraPerusic/k3s-df.git'
+    repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
     path: apps/templates
   destination:
