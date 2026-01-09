@@ -9,7 +9,7 @@ spec:
 
   # 1. ALLOWED SOURCES (Git Repos)
   sourceRepos:
-    - 'https://github.com/BoraPerusic/k3s-df.git'
+    - 'git@github.com/BoraPerusic/k3s-df.git'
 
   # 2. ALLOWED DESTINATIONS (Clusters & Namespaces)
   destinations:
