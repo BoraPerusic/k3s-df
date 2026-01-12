@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring-stack
+  name: data-minio
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io # Deletes the apps if this CR is deleted
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: platform-ops
   source:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
-    path: platform/monitoring
+    path: platform/data/minio
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: monitoring
+    namespace: data
   syncPolicy:
     automated:
       prune: true
