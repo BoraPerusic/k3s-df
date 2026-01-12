@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
-    path: platform/data/minio
+    path: platform/data/seaweed
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: data
