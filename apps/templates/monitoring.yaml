@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
-    path: platform/monitoring/alloy-wrapper # OR platform/monitoring depending on your choice
+    path: platform/monitoring
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

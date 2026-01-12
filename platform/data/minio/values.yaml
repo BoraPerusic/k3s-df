@@ -19,7 +19,7 @@ resources:
         memory: "128Mi"
     # This script runs inside a "mc" (MinIO Client) container
     extraCommands:
-      - mc alias set local http://minio.data.svc:9000 admin SafePassword123!
+      - mc alias set local http://minio.data.svc:9000 bora bora
       # Logs
       - mc mb --ignore-existing local/loki-chunks
       - mc mb --ignore-existing local/loki-ruler

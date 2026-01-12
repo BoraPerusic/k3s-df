@@ -64,3 +64,26 @@ source ~/.config/envman/PATH.env
 
 
 sudo snap install helm --classic
+
+# set up namespaces
+kubectl apply -f 01-namespaces.yaml
+
+# install argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yam
+# create a deploy key to github
+ssh-keygen -t ed25519 -C "argocd-deploy-key" -f argocd_key -N ""
+kubectl create secret generic infra-repo-creds \
+  -n argocd \
+  --from-literal=type=git \
+  --from-literal=url=git@github.com:BoraPerusic/k3s-df.git \
+  --from-file=sshPrivateKey=argocd_key \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+kubectl get secret infra-repo-creds -n argocd -o jsonpath="{.data.sshPrivateKey}" | base64 -d
+
+
+# set up projects
+kubectl apply -f 02-projects.yaml
+
+# and go
+kubectl apply -f root-app.yaml
