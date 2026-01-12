@@ -29,7 +29,7 @@ data:
     }
     prometheus.remote_write "local" {
       endpoint {
-        url = "{{ .Values.prometheus.writeEndpoint }}" # <--- INJECTED HERE
+        url = "{{ .Values.prometheus.writeEndpoint }}" 
       }
     }
 
@@ -39,14 +39,14 @@ data:
     }
     loki.write "local" {
       endpoint {
-        url = "{{ .Values.loki.endpoint }}" # <--- INJECTED HERE
+        url = "{{ .Values.loki.endpoint }}" 
       }
     }
 
     // 4. Traces (Using Helm Variable)
     otelcol.exporter.otlp "to_tempo" {
       client {
-        endpoint = "{{ .Values.tempo.endpoint }}" # <--- INJECTED HERE
+        endpoint = "{{ .Values.tempo.endpoint }}" 
         tls { insecure = true }
       }
     }
