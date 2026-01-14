@@ -1,5 +1,4 @@
 deploymentMode: SingleBinary
-
 loki:
   commonConfig:
     replication_factor: 1
@@ -10,7 +9,7 @@ loki:
       ruler: loki-ruler
       admin: loki-admin
     s3:
-      endpoint: http://minio.monitoring.svc:9000
+      endpoint: 'http://swfs-s3.data.svc:8333'
       region: us-east-1
       secretAccessKey: "SafePassword123!" # Match MinIO
       accessKeyId: "admin"

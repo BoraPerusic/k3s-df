@@ -1,0 +1,8 @@
+seaweedfs:
+  s3:
+    # We assume the SealedSecret created a k8s secret named 's3-secret'
+    # containing the 'authConfiguration' JSON string.
+#    extraVolumes:
+#      - name: s3-auth-config
+#        secret:
+#          secretName: s3-secret # <--- Created by SealedSecret
