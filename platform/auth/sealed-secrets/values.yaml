@@ -13,5 +13,5 @@ sealed-secrets:
   # Metrics for Prometheus
   metrics:
     serviceMonitor:
-      enabled: true
+      enabled: false
       namespace: monitoring
