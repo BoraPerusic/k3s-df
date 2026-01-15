@@ -18,12 +18,26 @@ We have prepared detailed documentation for different audiences:
 
 ### Installation
 The `00-bootstrap/` directory contains the scripts to install K3s and Argo CD from scratch.
-
 ```bash
 # Initialize the cluster and install Argo CD
 make init
 ```
 *(Note: `make init` simply applies the manifests in `00-bootstrap/`. You may need to run `00-bootstrap/install-base.sh` manually first if you don't have K3s installed yet.)*
+
+If installing the local version, install the sealed-secrets controller first with the monitoring disabled, and enable it later when Prometheus is installed:
+```yaml
+sealed-secrets:
+  fullnameOverride: sealed-secrets-controller
+  
+  podSecurityContext:
+    enabled: true
+    fsGroup: 65534
+  
+  metrics:
+    serviceMonitor:
+      enabled: false  # <--- SET THIS TO FALSE
+      namespace: monitoring
+```
 
 ### Accessing Dashboards
 To access the Grafana dashboard:

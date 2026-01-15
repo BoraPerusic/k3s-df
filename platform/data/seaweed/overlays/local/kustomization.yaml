@@ -4,7 +4,7 @@ kind: Kustomization
 # 1. Inherit the Base
 resources:
   - ../../base
-  - sealed-secret.yaml  # <--- This is the encrypted file you generated with kubeseal
+  - sealed-sws3-secret.yaml  # <--- This is the encrypted file you generated with kubeseal
 
 # 2. Configure the Chart for Local
 helmCharts:
