@@ -33,6 +33,12 @@ grafana:
       type: loki
       url: http://loki-gateway.monitoring.svc
       access: proxy
+      jsonData:
+        derivedFields:
+          - datasourceUid: tempo
+            matcherRegex: "traceID=(\\w+)"
+            name: TraceID
+            url: "$${__value.raw}"
     - name: Tempo
       type: tempo
       url: http://tempo.monitoring.svc:3100

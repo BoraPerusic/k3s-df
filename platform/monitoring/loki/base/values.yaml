@@ -10,9 +10,8 @@ loki:
       admin: loki-admin
     s3:
       endpoint: 'http://swfs-s3.data.svc:8333'
-      region: us-east-1
-      secretAccessKey: "SafePassword123!" # Match MinIO
-      accessKeyId: "admin"
+      secretAccessKey: "$(SWFS_S3_SECRET_KEY)"
+      accessKeyId: "$(SWFS_S3_ACCESS_KEY)"
       s3ForcePathStyle: true
       insecure: true
   schemaConfig:
@@ -43,3 +42,7 @@ monitoring:
       enabled: false
 test:
   enabled: false
+
+extraEnvFrom:
+  - secretRef:
+      name: monitoring-creds
