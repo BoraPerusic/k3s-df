@@ -1,5 +1,5 @@
-deploymentMode: SingleBinary
 loki:
+  deploymentMode: SingleBinary
   commonConfig:
     replication_factor: 1
   storage:
@@ -33,6 +33,10 @@ singleBinary:
     requests:
       cpu: 500m
       memory: 1Gi
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClass: local-path
 
 # Disable unneeded observability of the observability tool itself
 monitoring:
@@ -43,6 +47,15 @@ monitoring:
 test:
   enabled: false
 
-extraEnvFrom:
-  - secretRef:
-      name: monitoring-creds
+  # REPLACE the 'extraEnvFrom' block in values.yaml with this:
+  extraEnv:
+    - name: S3_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: monitoring-creds
+          key: access_key_id      # <--- Key inside your secret
+    - name: S3_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: monitoring-creds
+          key: secret_access_key  # <--- Key inside your secret
