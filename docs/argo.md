@@ -9,6 +9,7 @@ Run this command in your terminal:
 
 ```Bash
 kubectl patch cm argocd-cm -n argocd --type merge -p '{"data":{"kustomize.buildOptions":"--enable-helm"}}'
+kubectl patch cm argocd-cm -n argocd --type merge -p '{"data":{"kustomize.buildOptions":"--enable-helm --load-restrictor LoadRestrictionsNone"}}'
 ```
 
 Alternative (Manual Edit): If you prefer to edit it manually with kubectl edit cm argocd-cm -n argocd, add this key to the data section:
