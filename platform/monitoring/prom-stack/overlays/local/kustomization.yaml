@@ -5,7 +5,7 @@ resources:
   - sealed-grafana-creds.yaml
 
 helmCharts:
-  - name: kube-prometheus-stack
+  - name: prometheus
     repo: https://prometheus-community.github.io/helm-charts
     version: 28.4.0
     releaseName: mon-prometheus
