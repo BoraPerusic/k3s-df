@@ -58,6 +58,8 @@ read:
   replicas: 0
 backend:
   replicas: 0
+gateway:
+  replicas: 1
 
 # Disable unneeded observability of the observability tool itself
 monitoring:
