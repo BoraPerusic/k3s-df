@@ -1,5 +1,5 @@
+mode: SingleBinary
 loki:
-  deploymentMode: SingleBinary
   commonConfig:
     replication_factor: 1
   storage:
@@ -37,6 +37,13 @@ singleBinary:
     enabled: true
     size: 10Gi
     storageClass: local-path
+
+write:
+  replicas: 0
+read:
+  replicas: 0
+backend:
+  replicas: 0
 
 # Disable unneeded observability of the observability tool itself
 monitoring:
