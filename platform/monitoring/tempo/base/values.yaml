@@ -20,7 +20,7 @@ tempo:
       backend: s3
       s3:
         bucket: tempo-traces
-        endpoint:  'swfs-s3.data.svc:8333'
+        endpoint:  'seaweedfs-s3.data.svc:8333'
         insecure: true
         secret_key: "$(SWFS_S3_SECRET_KEY)"
         access_key: "$(SWFS_S3_ACCESS_KEY)"
