@@ -1,0 +1,38 @@
+# Global settings
+commonLabels:
+  app: keycloak
+
+# 1. Admin Credentials (mapped to the secret we just created)
+auth:
+  adminUser: admin
+  existingSecret: "keycloak-admin-creds"
+  passwordSecretKey: "admin-password"
+
+# 2. Production Mode (Optimized build, even for local it's good practice)
+production: true
+
+# 3. HTTP Configuration
+# We handle TLS at the Ingress level (Traefik), so Keycloak speaks HTTP internally.
+proxy: edge
+httpRelativePath: "/"
+
+# 4. Ingress (Expose it to your browser)
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hostname: keycloak.localhost
+  annotations:
+    # If using Cert-Manager later, you add cluster-issuer here
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+
+# 5. Service Configuration
+service:
+  type: ClusterIP
+  ports:
+    http: 80
+
+# 6. Metrics (Optional, for Prometheus later)
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: false # Set to true later if you want to monitor it

@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: auth
+
+resources:
+  - sealed-keycloak-admin-creds.yaml
+  - sealed-keycloak-db-creds.yaml
+
+helmCharts:
+  - name: keycloak
+    repo: https://charts.bitnami.com/bitnami
+    version: 25.2.0
+    releaseName: identity-keycloak
+    namespace: auth
+    valuesFile: ../../base/values.yaml
+    additionalValuesFiles:
+      - values.yaml

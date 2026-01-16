@@ -1,0 +1,23 @@
+postgresql:
+  enabled: true
+
+  # Architecture options
+  architecture: standalone
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+      storageClass: local-path
+
+  # Authentication Configuration
+  auth:
+    username: keycloak
+    database: keycloak
+
+    # Point to your Sealed Secret
+    existingSecret: "keycloak-db-creds"
+
+    # Map the keys inside the secret
+    secretKeys:
+      adminPasswordKey: "postgres-password" # For 'postgres' user
+      userPasswordKey: "password"           # For 'keycloak' user
