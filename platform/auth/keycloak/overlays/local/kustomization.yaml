@@ -11,7 +11,7 @@ helmCharts:
   - name: keycloak
     repo: https://charts.bitnami.com/bitnami
     version: 25.2.0
-    releaseName: identity-keycloak
+    releaseName: auth-keycloak
     namespace: auth
     valuesFile: ../../base/values.yaml
     additionalValuesFiles:
