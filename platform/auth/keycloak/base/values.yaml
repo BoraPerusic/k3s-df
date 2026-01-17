@@ -1,38 +1,55 @@
-# Global settings
-commonLabels:
-  app: keycloak
+# CloudPirates / Official Image Configuration
 
-# 1. Admin Credentials (mapped to the secret we just created)
-auth:
-  adminUser: admin
-  existingSecret: "keycloak-admin-creds"
-  passwordSecretKey: "admin-password"
+# 1. Replica Count
+replicaCount: 1
 
-# 2. Production Mode (Optimized build, even for local it's good practice)
-production: true
-
-# 3. HTTP Configuration
-# We handle TLS at the Ingress level (Traefik), so Keycloak speaks HTTP internally.
-proxy: edge
-httpRelativePath: "/"
-
-# 4. Ingress (Expose it to your browser)
+# 2. Ingress (Expose UI)
 ingress:
   enabled: true
-  ingressClassName: traefik
-  hostname: keycloak.localhost
+  className: traefik
   annotations:
-    # If using Cert-Manager later, you add cluster-issuer here
     traefik.ingress.kubernetes.io/router.entrypoints: web
+  rules:
+    - host: keycloak.localhost
+      paths:
+        - path: /
+          pathType: Prefix
 
-# 5. Service Configuration
-service:
-  type: ClusterIP
-  ports:
-    http: 80
+# 3. Environment Variables (The Universal Config)
+# Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
+extraEnv:
+  # --- Admin Credentials ---
+  - name: KEYCLOAK_ADMIN
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-admin-creds
+        key: admin-user # Matches your sealed secret
+  - name: KEYCLOAK_ADMIN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-admin-creds
+        key: admin-password # Matches your sealed secret
 
-# 6. Metrics (Optional, for Prometheus later)
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: false # Set to true later if you want to monitor it
+  # --- Database Connection ---
+  - name: KC_DB
+    value: postgres
+  - name: KC_DB_URL
+    # Connect to the bundled postgres service
+    value: "jdbc:postgresql://identity-keycloak-postgresql.identity.svc.cluster.local:5432/keycloak"
+  - name: KC_DB_USERNAME
+    value: keycloak
+  - name: KC_DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-db-creds
+        key: password # Matches your sealed secret
+
+  # --- Operational Settings ---
+  - name: KC_HOSTNAME
+    value: keycloak.localhost
+  - name: KC_PROXY
+    value: edge # We are behind Traefik (Edge TLS termination)
+  - name: KC_METRICS_ENABLED
+    value: "true"
+  - name: KC_HEALTH_ENABLED
+    value: "true"
