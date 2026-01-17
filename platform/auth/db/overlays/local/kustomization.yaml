@@ -8,9 +8,9 @@ resources:
   - ../../../../auth/keycloak/overlays/local/sealed-keycloak-db-creds.yaml
 
 helmCharts:
-  - name: postgresql
-    repo: oci://registry-1.docker.io/bitnamicharts/postgresql
-    version: 18.2.0
+  - name: postgres
+    repo: oci://registry-1.docker.io/cloudpirates
+    version: 0.14.1
     releaseName: auth-postgres
     namespace: auth
     valuesFile: ../../base/values.yaml
