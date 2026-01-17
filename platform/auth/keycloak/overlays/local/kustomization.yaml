@@ -12,8 +12,8 @@ helmCharts:
     # Switch to CloudPirates
     repo: oci://registry-1.docker.io/cloudpirates
     version: 0.11.4 # Corresponds to Keycloak ~26.x
-    releaseName: identity-keycloak
-    namespace: identity
+    releaseName: auth-keycloak
+    namespace: auth
     valuesFile: ../../base/values.yaml
     additionalValuesFiles:
       - values.yaml

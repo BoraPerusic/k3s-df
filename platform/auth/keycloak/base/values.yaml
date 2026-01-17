@@ -35,7 +35,7 @@ extraEnv:
     value: postgres
   - name: KC_DB_URL
     # Connect to the bundled postgres service
-    value: "jdbc:postgresql://identity-keycloak-postgresql.identity.svc.cluster.local:5432/keycloak"
+    value: "jdbc:postgresql://identity-keycloak-postgresql.auth.svc.cluster.local:5432/keycloak"
   - name: KC_DB_USERNAME
     value: keycloak
   - name: KC_DB_PASSWORD
