@@ -15,7 +15,7 @@ ingress:
         - path: /
           pathType: Prefix
 # 3. Disable built-in Postgres
-postgresql:
+postgres:
   enabled: false
 
 # 3. Environment Variables (The Universal Config)
