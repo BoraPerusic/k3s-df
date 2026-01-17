@@ -14,6 +14,9 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+# 3. Disable built-in Postgres
+postgresql:
+  enabled: false
 
 # 3. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
@@ -30,7 +33,7 @@ extraEnv:
         name: keycloak-admin-creds
         key: admin-password # Matches your sealed secret
 
-  # --- Database Connection ---
+  # --- Database Connection --- - probably not needed
   - name: KC_DB
     value: postgres
   - name: KC_DB_URL_HOST
