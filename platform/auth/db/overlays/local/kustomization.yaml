@@ -8,7 +8,7 @@ resources:
   - ../../../../auth/keycloak/overlays/local/sealed-keycloak-db-creds.yaml
 
 helmCharts:
-  - name: postgresql
+  - name: postgres
     repo: oci://registry-1.docker.io/cloudpirates/postgres
     version: 0.14.0
     releaseName: auth-postgres
