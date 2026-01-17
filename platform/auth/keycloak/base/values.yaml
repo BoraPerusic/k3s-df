@@ -33,15 +33,26 @@ extraEnv:
   # --- Database Connection ---
   - name: KC_DB
     value: postgres
-  - name: KC_DB_URL
-    # Connect to the bundled postgres service
-    value: "jdbc:postgresql://auth-keycloak-postgresql.auth.svc.cluster.local:5432/keycloak"
+  - name: KC_DB_URL_HOST
+    # Connect to the postgres service
+    value: "auth-postgres.auth.svc.cluster.local"
+  - name: KC_DB_URL_PORT
+    value: "5432"
+  # --- Database Credentials ---
+  - name: KC_DB_URL_DATABASE
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-pg-creds
+        key: customDb # Matches your sealed secret
   - name: KC_DB_USERNAME
-    value: keycloak
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-pg-creds
+        key: name # Matches your sealed secret
   - name: KC_DB_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: keycloak-db-creds
+        name: keycloak-pg-creds
         key: password # Matches your sealed secret
 
   # --- Operational Settings ---
