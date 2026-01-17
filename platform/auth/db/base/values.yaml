@@ -11,16 +11,16 @@ image:
 # 2. Authentication (Connect to your existing Secret)
 auth:
   # Use the Sealed Secret you already created
-  existingSecret: "keycloak-db-creds"
+  existingSecret: "keycloak-pg-creds"
   secretKeys:
     adminPasswordKey: "postgres-password"
 
 customUser:
-  name: "keycloak"
-  database: "keycloak"
-  existingSecret: "keycloak-db-creds"
+  existingSecret: "keycloak-pg-creds"
   secretKeys:
+    name: "name"
     password: "password"
+    database: "customDb"
 
 # 3. Persistence
 primary:

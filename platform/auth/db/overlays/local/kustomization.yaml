@@ -5,7 +5,7 @@ namespace: auth
 
 # Import the Sealed Secret here so the DB can find it
 resources:
-  - ../../../../auth/keycloak/overlays/local/sealed-keycloak-db-creds.yaml
+  - ../../../../auth/keycloak/overlays/local/sealed-keycloak-pg-creds.yaml
 
 helmCharts:
   - name: postgres
