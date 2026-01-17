@@ -4,7 +4,7 @@ metadata:
   name: auth-postgres
   namespace: argocd
 spec:
-  project: default
+  project: platform-ops
   source:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
