@@ -8,6 +8,13 @@ database:
       size: 8Gi
       storageClass: local-path
 
+  type: postgres
+  name: keycloak
+  username: keycloak
+  existingSecret: "keycloak-db-creds"
+  secretKeys:
+    passwordKey: "password"
+
 # 2. KEYCLOAK CONFIGURATION (The App)
 # We use extraEnv to manually wire the connection details.
 extraEnv:
