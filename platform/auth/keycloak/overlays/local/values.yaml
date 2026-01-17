@@ -2,10 +2,6 @@
 database:
   fullnameOverride: "auth-postgres" # Fix the name so it's predictable
 
-  # Ensure we use the standard image
-  image:
-    tag: 17.6
-
   primary:
     persistence:
       enabled: true
@@ -15,30 +11,5 @@ database:
 # 2. KEYCLOAK CONFIGURATION (The App)
 # We use extraEnv to manually wire the connection details.
 extraEnv:
-  # --- Database Connection ---
-  - name: KC_DB
-    value: postgres
-  - name: KC_DB_URL
-    # Note: The host is now 'auth-postgres' because of the fullnameOverride above
-    value: "jdbc:postgresql://auth-postgres.auth.svc.cluster.local:5432/keycloak"
-  - name: KC_DB_USERNAME
-    value: keycloak
-  - name: KC_DB_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: keycloak-db-creds
-        key: password
-
-  # --- Admin Console Credentials ---
-  - name: KEYCLOAK_ADMIN
-    value: admin
-  - name: KEYCLOAK_ADMIN_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: keycloak-admin-creds
-        key: admin-password
-
   - name: KC_HOSTNAME
     value: keycloak.localhost
-  - name: KC_PROXY
-    value: edge
