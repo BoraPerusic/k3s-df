@@ -9,7 +9,7 @@ resources:
 
 helmCharts:
   - name: postgresql
-    repo: ooci://registry-1.docker.io/cloudpirates/postgres
+    repo: oci://registry-1.docker.io/cloudpirates/postgres
     version: 0.14.1
     releaseName: auth-postgres
     namespace: auth
