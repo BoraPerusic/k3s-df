@@ -10,15 +10,17 @@ image:
 
 # 2. Authentication (Connect to your existing Secret)
 auth:
-  enablePostgresUser: true
-  database: keycloak    # Auto-create this DB on startup
-  username: keycloak    # Auto-create this user on startup
-
   # Use the Sealed Secret you already created
   existingSecret: "keycloak-db-creds"
   secretKeys:
     adminPasswordKey: "postgres-password"
-    userPasswordKey: "password"
+
+customUser:
+  name: "keycloak"
+  database: "keycloak"
+  existingSecret: "keycloak-db-creds"
+  secretKeys:
+    password: "password"
 
 # 3. Persistence
 primary:
