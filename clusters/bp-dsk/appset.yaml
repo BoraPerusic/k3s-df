@@ -17,7 +17,7 @@ spec:
     metadata:
       name: '{{path.basename}}' # e.g., "monitoring", "data"
     spec:
-      project: default
+      project: platform-ops
       source:
         repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
         targetRevision: HEAD
