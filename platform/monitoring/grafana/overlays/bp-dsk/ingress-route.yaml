@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-custom-port
+  namespace: monitoring
+spec:
+  entryPoints:
+    - grafana      # <--- MUST match the name defined in Step 1
+  routes:
+    - match: Host(`192.168.1.38`) || Host(`dsk.local`)
+      kind: Rule
+      services:
+        - name: mon-grafana   # Your actual Grafana Service name
+          port: 80            # The internal port Grafana listens on

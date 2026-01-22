@@ -1,0 +1,38 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system # Traefik lives here in K3s
+spec:
+  valuesContent: |-
+    ports:
+      # Keep standard web ports
+      web:
+        expose: true
+        exposedPort: 80
+        port: 8000
+      websecure:
+        expose: true
+        exposedPort: 443
+        port: 8443
+      # --- DEFINE YOUR CUSTOM PORTS HERE ---
+      argocd:    # Name of the entryPoint
+        port: 7000   # Internal container port
+        expose: true
+        exposedPort: 7000 # The port you access from outside (192.168.1.38:7000)
+        protocol: TCP
+      keycloak:
+        port: 7001
+        expose: true
+        exposedPort: 7001
+        protocol: TCP
+      grafana:
+        port: 7002
+        expose: true
+        exposedPort: 7002
+        protocol: TCP
+      prometheus:
+        port: 7003
+        expose: true
+        exposedPort: 7003
+        protocol: TCP

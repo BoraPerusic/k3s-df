@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus-custom-port
+  namespace: monitoring
+spec:
+  entryPoints:
+    - prometheus
+  routes:
+    - match: Host(`192.168.1.38`) || Host(`dsk.local`)
+      kind: Rule
+      services:
+        - name: mon-prometheus-server
+          port: 80

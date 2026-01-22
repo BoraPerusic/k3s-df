@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak-custom-port
+  namespace: auth
+spec:
+  entryPoints:
+    - keycloak
+  routes:
+    - match: Host(`192.168.1.38`) || Host(`dsk.local`)
+      kind: Rule
+      services:
+        - name: auth-keycloak
+          port: 8080
