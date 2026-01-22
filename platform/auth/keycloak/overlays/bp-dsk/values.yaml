@@ -3,7 +3,7 @@ database:
   host: "auth-postgres.auth.svc.cluster.local"
   port: "5432"
   name: "keycloak"
-  existingSecret: "keycloak-pg-creds"
+  existingSecret: "keycloak-db-creds"
   secretKeys:
     usernameKey: "name"
     passwordKey: "password"
