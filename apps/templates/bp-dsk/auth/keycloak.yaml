@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mon-prometheus
+  name: auth-keycloak
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
-    path: platform/monitoring/prom-stack/overlays/local
+    path: platform/auth/keycloak/overlays/bp-dsk
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: monitoring
+    server: https://kubernetes.default.svc
+    namespace: auth
   syncPolicy:
     automated:
       prune: true

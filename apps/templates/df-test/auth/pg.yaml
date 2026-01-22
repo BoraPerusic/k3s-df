@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mon-tempo
+  name: auth-postgres
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   project: platform-ops
   source:
-    repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
+    repoURL: 'https://github.com/DFPartner/fabric-infra.git'
     targetRevision: HEAD
-    path: platform/monitoring/tempo/overlays/local
+    path: platform/auth/db/overlays/df-test
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: monitoring
+    server: https://kubernetes.default.svc
+    namespace: auth
   syncPolicy:
     automated:
       prune: true

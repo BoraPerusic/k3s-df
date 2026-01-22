@@ -69,7 +69,7 @@ sudo snap install helm --classic
 kubectl apply -f 01-namespaces.yaml
 
 # install argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yam
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --request-timeout=180s
 # create a deploy key to github
 ssh-keygen -t ed25519 -C "argocd-deploy-key" -f argocd_key -N ""
 kubectl create secret generic infra-repo-creds \
@@ -96,3 +96,22 @@ curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --
 echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
+
+
+
+kubectl -n argocd set env deploy/argocd-repo-server ARGOCD_EXEC_TIMEOUT=180s
+
+
+kubectl patch cm argocd-cm -n argocd --type merge \
+  -p '{"data":{"kustomize.buildOptions":"--enable-helm --load-restrictor LoadRestrictionsNone"}}'
+
+# replaced by the create-buckets job
+kubectl exec -it -n data service/seaweedfs-master -- weed shell \
+  -master=localhost:9333 \
+  -filer=seaweedfs-filer-client.data:8888
+s3.bucket.create -name tempo-traces
+s3.bucket.create -name loki-chunks
+s3.bucket.create -name loki-ruler
+s3.bucket.create -name loki-admin
+
+s3.bucket.list
