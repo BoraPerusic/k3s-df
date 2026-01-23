@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: bp-dsk-root-ca
-  namespace: cert-manager
+  namespace: auth
 spec:
   isCA: true
   commonName: "BP DSK Kubernetes CA"
