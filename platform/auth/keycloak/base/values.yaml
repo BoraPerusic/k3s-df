@@ -18,7 +18,11 @@ ingress:
 postgres:
   enabled: false
 
-# 3. Environment Variables (The Universal Config)
+# 4. Add OBO feature
+conf:
+  features: "token-exchange"
+
+# 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
 extraEnv:
   # --- Admin Credentials ---
