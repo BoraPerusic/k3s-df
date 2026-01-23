@@ -13,7 +13,7 @@ postgres:
 
 # 4. Add OBO feature
 conf:
-  features: "token-exchange"
+  features: "token-exchange", "hostname:v2"
 
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
@@ -55,6 +55,10 @@ extraEnv:
   # --- Operational Settings ---
   - name: KC_HOSTNAME
     value: "https://192.168.1.38:7001"
+  - name: KC_HOSTNAME_ADMIN
+    value: "https://192.168.1.38:7001/admin"
+  - name: KC_HTTPS_PORT
+    value: "7001"
   - name: KC_METRICS_ENABLED
     value: "true"
   - name: KC_HEALTH_ENABLED
@@ -63,10 +67,6 @@ extraEnv:
     value: "xforwarded"
   - name: KC_HOSTNAME_STRICT
     value: "false" # Easier for test clusters
-  - name: KC_HTTP_ENABLED
-    value: "true"
-  - name: KC_HTTP_PORT
-    value: "7001"
   # Tell Keycloak it is behind a proxy (Traefik) that terminates SSL
   - name: KC_PROXY
     value: "edge"
