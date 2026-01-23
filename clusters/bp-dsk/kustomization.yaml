@@ -7,6 +7,7 @@ resources:
   - sys-argocd/ingress-route.yaml
   - sys-cert-manager/self-signed-issuer.yaml
   - sys-cert-manager/root-ca.yaml
+  - sys-cert-manager/ca-issuer.yaml
   - certificate.yaml
 
   # 2. The Application Generator (The AppSet)
