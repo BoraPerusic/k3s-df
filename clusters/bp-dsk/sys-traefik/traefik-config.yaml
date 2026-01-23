@@ -5,6 +5,9 @@ metadata:
   namespace: kube-system # Traefik lives here in K3s
 spec:
   valuesContent: |-
+    api:
+      dashboard: true
+      insecure: true
     ports:
       # Keep standard web ports
       web:
@@ -42,3 +45,9 @@ spec:
           default: true
         exposedPort: 7003
         protocol: TCP
+    logs:
+      access:
+        enabled: true
+        fields:
+          headers:
+            defaultMode: keep
