@@ -5,15 +5,8 @@ replicaCount: 1
 
 # 2. Ingress (Expose UI)
 ingress:
-  enabled: true
-  className: traefik
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-  rules:
-    - host: keycloak.localhost
-      paths:
-        - path: /
-          pathType: Prefix
+  enabled: false
+
 # 3. Disable built-in Postgres
 postgres:
   enabled: false
@@ -61,7 +54,7 @@ extraEnv:
 
   # --- Operational Settings ---
   - name: KC_HOSTNAME
-    value: keycloak.localhost
+    value: "https://192.168.1.38:7001"
   - name: KC_METRICS_ENABLED
     value: "true"
   - name: KC_HEALTH_ENABLED
@@ -77,9 +70,3 @@ extraEnv:
   # Tell Keycloak it is behind a proxy (Traefik) that terminates SSL
   - name: KC_PROXY
     value: "edge"
-  # Explicitly tell Keycloak its public URL (prevents weird redirects)
-  - name: KC_HOSTNAME_URL
-    value: "https://192.168.1.38:7001"
-  # Allow Keycloak to serve the admin console securely
-  - name: KC_HOSTNAME_ADMIN_URL
-    value: "https://192.168.1.38:7001"
