@@ -22,7 +22,7 @@ service:
 
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
-extraEnv:
+extraEnv: |
   # --- Admin Credentials ---
   - name: KEYCLOAK_ADMIN
     value: admin
