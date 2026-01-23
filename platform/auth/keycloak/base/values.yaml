@@ -72,6 +72,8 @@ extraEnv:
     value: "false" # Easier for test clusters
   - name: KC_HTTP_ENABLED
     value: "true"
+  - name: KC_HTTP_PORT
+    value: "7001"
   # Tell Keycloak it is behind a proxy (Traefik) that terminates SSL
   - name: KC_PROXY
     value: "edge"
