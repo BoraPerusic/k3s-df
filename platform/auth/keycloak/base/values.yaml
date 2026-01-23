@@ -33,31 +33,6 @@ extraEnv: |
         name: keycloak-admin-creds
         key: admin-password # Matches your sealed secret
 
-  # --- Database Connection --- - probably not needed
-  - name: KC_DB
-    value: postgres
-  - name: KC_DB_URL_HOST
-    # Connect to the postgres service
-    value: "auth-postgres.auth.svc.cluster.local"
-  - name: KC_DB_URL_PORT
-    value: "5432"
-  # --- Database Credentials ---
-  - name: KC_DB_URL_DATABASE
-    valueFrom:
-      secretKeyRef:
-        name: keycloak-db-creds
-        key: database # Matches your sealed secret
-  - name: KC_DB_USERNAME
-    valueFrom:
-      secretKeyRef:
-        name: keycloak-db-creds
-        key: name # Matches your sealed secret
-  - name: KC_DB_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: keycloak-db-creds
-        key: password # Matches your sealed secret
-
   # --- Operational Settings ---
   - name: KC_HOSTNAME
     value: "https://192.168.1.38:7001"
@@ -67,8 +42,6 @@ extraEnv: |
     value: "7001"
   - name: KC_PROXY
     value: "edge"
-  - name: KC_PROXY_HEADERS
-    value: "xforwarded"
   - name: KC_HOSTNAME_STRICT
     value: "false"
   - name: KC_HTTP_ENABLED
