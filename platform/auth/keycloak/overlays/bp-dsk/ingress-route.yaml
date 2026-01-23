@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - keycloak
   routes:
-    - match: Host(`192.168.1.38`) || Host(`bp-dsk.local`) || Host(`bp-dsk.lan`)
+    - match: PathPrefix(`/`)
       kind: Rule
       services:
         - name: auth-keycloak-keycloakx-http
