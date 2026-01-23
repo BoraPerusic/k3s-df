@@ -24,3 +24,4 @@ spec:
         port: 80 # Try 80 first. If fails, try 443.
         scheme: https # <--- Force HTTPS to backend
         serversTransport: argocd-insecure-transport
+  tls: {}
