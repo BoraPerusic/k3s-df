@@ -13,7 +13,7 @@ postgres:
 
 # 4. Add OBO feature
 conf:
-  features: "token-exchange", "hostname:v2"
+  features: "token-exchange,hostname:v2"
 
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
