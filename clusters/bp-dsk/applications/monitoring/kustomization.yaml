@@ -7,3 +7,4 @@ resources:
   - ../../../../platform/monitoring/loki/overlays/bp-dsk
   - ../../../../platform/monitoring/prometheus/overlays/bp-dsk
   - ../../../../platform/monitoring/tempo/overlays/bp-dsk
+  - certificate.yaml

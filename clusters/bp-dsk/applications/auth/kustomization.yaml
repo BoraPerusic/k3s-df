@@ -6,3 +6,4 @@ resources:
   - ../../../../platform/auth/keycloak/overlays/bp-dsk
   - ../../../../platform/auth/sealed-secrets/
   - ../../../../platform/auth/cert-manager/
+  - certificate.yaml

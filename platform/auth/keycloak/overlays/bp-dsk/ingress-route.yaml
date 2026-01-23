@@ -7,8 +7,10 @@ spec:
   entryPoints:
     - keycloak
   routes:
-    - match: Host(`192.168.1.38`) || Host(`dsk.local`)
+    - match: Host(`192.168.1.38`) || Host(`bp-dsk.local`) || Host(`bp-dsk.lan`)
       kind: Rule
       services:
         - name: auth-keycloak
           port: 8080
+  tls:
+    secretName: auth-tls

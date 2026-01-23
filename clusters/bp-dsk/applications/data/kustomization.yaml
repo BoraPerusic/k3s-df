@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   - ../../../../platform/data/seaweed/overlays/bp-dsk
+  - certificate.yaml
 
