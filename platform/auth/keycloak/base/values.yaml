@@ -36,8 +36,6 @@ extraEnv: |
   # --- Operational Settings ---
   - name: KC_HOSTNAME
     value: "https://192.168.1.38:7001"
-  - name: KC_HOSTNAME_ADMIN
-    value: "https://192.168.1.38:7001/admin"
   - name: KC_HTTPS_PORT
     value: "7001"
   - name: KC_PROXY
