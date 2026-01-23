@@ -62,8 +62,6 @@ extraEnv:
   # --- Operational Settings ---
   - name: KC_HOSTNAME
     value: keycloak.localhost
-  - name: KC_PROXY
-    value: edge # We are behind Traefik (Edge TLS termination)
   - name: KC_METRICS_ENABLED
     value: "true"
   - name: KC_HEALTH_ENABLED
@@ -74,3 +72,12 @@ extraEnv:
     value: "false" # Easier for test clusters
   - name: KC_HTTP_ENABLED
     value: "true"
+  # Tell Keycloak it is behind a proxy (Traefik) that terminates SSL
+  - name: KC_PROXY
+    value: "edge"
+  # Explicitly tell Keycloak its public URL (prevents weird redirects)
+  - name: KC_HOSTNAME_URL
+    value: "https://192.168.1.38:7001"
+  # Allow Keycloak to serve the admin console securely
+  - name: KC_HOSTNAME_ADMIN_URL
+    value: "https://192.168.1.38:7001"
