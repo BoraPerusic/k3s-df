@@ -15,6 +15,11 @@ postgres:
 conf:
   features: "token-exchange,hostname:v2"
 
+service:
+  type: ClusterIP
+  port: 8080
+  httpManagementPort: 9000 # Metrics/Health
+
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
 extraEnv:
@@ -59,14 +64,15 @@ extraEnv:
     value: "https://192.168.1.38:7001/admin"
   - name: KC_HTTPS_PORT
     value: "7001"
+  - name: KC_PROXY_HEADERS
+    value: "xforwarded"
+  - name: KC_HOSTNAME_STRICT
+    value: "false"
+  - name: KC_HTTP_ENABLED
+    value: "true"
+  - name: KC_LOG_LEVEL
+    value: "INFO,org.keycloak.events:DEBUG"
   - name: KC_METRICS_ENABLED
     value: "true"
   - name: KC_HEALTH_ENABLED
     value: "true"
-  - name: KC_PROXY_HEADERS
-    value: "xforwarded"
-  - name: KC_HOSTNAME_STRICT
-    value: "false" # Easier for test clusters
-  # Tell Keycloak it is behind a proxy (Traefik) that terminates SSL
-  - name: KC_PROXY
-    value: "edge"
