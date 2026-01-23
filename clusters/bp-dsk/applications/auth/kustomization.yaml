@@ -5,3 +5,4 @@ resources:
   - ../../../../platform/auth/db/overlays/bp-dsk
   - ../../../../platform/auth/keycloak/overlays/bp-dsk
   - ../../../../platform/auth/sealed-secrets/
+  - ../../../../platform/auth/cert-manager/
