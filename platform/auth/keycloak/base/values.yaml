@@ -18,12 +18,19 @@ conf:
 http:
   relativePath: '/'
 
+database:
+  vendor: "postgres"
+  host: "auth-postgres.auth.svc.cluster.local"
+  port: "5432"
+  database: "keycloak"
+  username: "keycloak"
+  existingSecret: "keycloak-db-creds"
+
 command:
   - "/opt/keycloak/bin/kc.sh"
   - "start"
   - "--http-port=8080"
   - "--hostname-strict=false"
-
 
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
