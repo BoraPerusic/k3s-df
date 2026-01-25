@@ -9,10 +9,11 @@ spec:
     repoURL: 'https://github.com/BoraPerusic/k3s-df.git'
     targetRevision: HEAD
     path: clusters/bp-dsk
+    kustomize:
+      buildOptions: "--enable-helm"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
-  # 4. Sync Policy (Automate it)
   syncPolicy:
     automated:
       prune: true      # Delete things in cluster that are removed from Git
