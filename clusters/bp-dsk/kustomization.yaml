@@ -2,13 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  # 1. Infrastructure (Applied directly by kubectl or the bootstrap app)
-  - sys-traefik/traefik-config.yaml
+  # 1. the project
+  - platform-ops.yaml
+  # 2. argocd managing itself :)
   - sys-argocd
+  # 3. Infrastructure
+  - sys-traefik/traefik-config.yaml
   - sys-cert-manager/self-signed-issuer.yaml
   - sys-cert-manager/root-ca.yaml
   - sys-cert-manager/ca-issuer.yaml
   - certificate.yaml
-
-  # 2. The Application Generator (The AppSet)
+  # 4. The Application Generator (The AppSet)
   - appset.yaml

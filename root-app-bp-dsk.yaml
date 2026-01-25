@@ -12,3 +12,8 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
+  # 4. Sync Policy (Automate it)
+  syncPolicy:
+    automated:
+      prune: true      # Delete things in cluster that are removed from Git
+      selfHeal: true   # Fix things in cluster if someone changes them manually

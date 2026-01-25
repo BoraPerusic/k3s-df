@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-ops
+  namespace: argocd
+  # The 'finalizer' ensures that if you delete this project,
+  # Argo validates that all Apps inside it are deleted first.
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: "Project for Platform level infrastructure (Keycloak, Traefik, Monitoring)"
+
+  # 1. SOURCE REPOS
+  # Allow apps in this project to pull from your git repo
+  sourceRepos:
+    - '*' # Or restrict to your specific https://github.com/... url
+
+  # 2. DESTINATIONS
+  # Allow apps to deploy to the local cluster in specific namespaces
+  destinations:
+    - namespace: '*'   # Allow all namespaces (easier for home lab)
+      server: https://kubernetes.default.svc
+  # OR restrict strictly:
+  # - namespace: auth
+  #   server: https://kubernetes.default.svc
+  # - namespace: monitoring
+  #   server: https://kubernetes.default.svc
+
+  # 3. ALLOWED RESOURCES
+  # Allow creating any resource type
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
