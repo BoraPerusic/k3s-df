@@ -20,6 +20,7 @@ command:
   - "start"
   - "--http-port=8080"
   - "--hostname-strict=false"
+  - "--set-string http.relativePath=/"
 
 # 5. Environment Variables (The Universal Config)
 # Instead of relying on chart-specific parameters, we set standard Keycloak Env Vars.
