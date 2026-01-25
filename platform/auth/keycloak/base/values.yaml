@@ -39,11 +39,10 @@ extraEnv: |
   - name: KEYCLOAK_ADMIN
     value: admin
   - name: KEYCLOAK_ADMIN_PASSWORD
-    value: admin
-  #    valueFrom:
-  #      secretKeyRef:
-  #        name: keycloak-admin-creds
-  #        key: admin-password # Matches your sealed secret
+    valueFrom:
+      secretKeyRef:
+        name: keycloak-admin-creds
+        key: admin-password
 
   # --- Operational Settings ---
   - name: KC_HOSTNAME
