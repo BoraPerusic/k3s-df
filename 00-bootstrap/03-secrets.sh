@@ -76,3 +76,15 @@ kubectl create secret generic grafana-admin-creds \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-grafana-creds.yaml > sealed-grafana-creds.yaml
+
+# Grafana ouath (Keycloak) secret (when keycloak secret is up and running)
+kubectl create secret generic grafana-oauth-keycloak-creds \
+  --from-literal=client_id=grafana \
+  --from-literal=client_secret=93lZiunmjSbNOUgBS2OZE7YYz6oMR7Rr \
+  --namespace monitoring \
+  --dry-run=client -o yaml > raw-grafana-oauth-keycloak-creds.yaml
+
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-grafana-oauth-keycloak-creds.yaml > sealed-grafana-oauth-keycloak-creds.yaml

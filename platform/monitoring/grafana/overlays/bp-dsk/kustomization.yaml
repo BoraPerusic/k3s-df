@@ -5,6 +5,7 @@ namespace: monitoring
 
 resources:
   - sealed-grafana-creds.yaml
+  - sealed-grafana-oauth-keycloak-creds.yaml
   - ingress-route.yaml
 
 helmCharts:
