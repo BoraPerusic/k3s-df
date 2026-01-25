@@ -6,6 +6,5 @@ database:
   database: "keycloak"
   username: "keycloak"
   existingSecret: "keycloak-db-creds"
-  secretKeys:
-    usernameKey: "name"
-    passwordKey: "password"
+
+
