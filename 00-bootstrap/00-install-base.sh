@@ -105,6 +105,9 @@ kubectl apply -f 02-projects.yaml
 kubectl -n argocd set env deploy/argocd-repo-server ARGOCD_EXEC_TIMEOUT=180s
 kubectl patch cm argocd-cm -n argocd --type merge \
   -p '{"data":{"kustomize.buildOptions":"--enable-helm --load-restrictor LoadRestrictionsNone"}}'
+# 4.6 set up credential secret manager and certificate manager
+kubectl apply -k 03-security.yaml
+# 4.7 once the sealed-secret manager is up and running, create all secrets - see 04-secrets.sh
 
 
 # ----------------------------------------- 5. and GO ...  -------------------------------------
