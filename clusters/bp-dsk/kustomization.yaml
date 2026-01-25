@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   # 1. Infrastructure (Applied directly by kubectl or the bootstrap app)
   - sys-traefik/traefik-config.yaml
-  - sys-argocd/ingress-route.yaml
+  - sys-argocd
   - sys-cert-manager/self-signed-issuer.yaml
   - sys-cert-manager/root-ca.yaml
   - sys-cert-manager/ca-issuer.yaml
