@@ -94,11 +94,13 @@ kubectl get pods -A
 # 4.1 set up namespaces
 kubectl apply -f 01-namespaces.yaml
 # 4.2 install ArgoCD using helm
+helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update
 helm install argocd argo/argo-cd --namespace argocd --create-namespace -f values.yaml
 # 4.3 get the temporary admin credentials (should be replaced later on)
 kubectl get secret infra-repo-creds -n argocd -o jsonpath="{.data.sshPrivateKey}" | base64 -d
 # 4.4 set up projects
-kubectl apply -f 02-projects.yaml
+kubectl apply -f 02-projects-<XXX>.yaml
 # 4.5 patch argo
 # Patch argo cd to enable longer timeout and enable helm and cross-app loading
 # TODO this should be moved to ArgoCD ConfigMap
@@ -106,8 +108,25 @@ kubectl -n argocd set env deploy/argocd-repo-server ARGOCD_EXEC_TIMEOUT=180s
 kubectl patch cm argocd-cm -n argocd --type merge \
   -p '{"data":{"kustomize.buildOptions":"--enable-helm --load-restrictor LoadRestrictionsNone"}}'
 # 4.6 set up credential secret manager and certificate manager
-kubectl apply -k 03-security.yaml
-# 4.7 once the sealed-secret manager is up and running, create all secrets - see 04-secrets.sh
+# 4.6.1 Add the Jetstack Repo
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+# 4.6.2 Create the Namespace
+helm install cert-manager jetstack/cert-manager \
+  --namespace auth \
+  --version v1.19.2 \
+  --set installCRDs=true
+# 4.6.3 Apply the root and ca issuers
+kubectl apply -f self-signed-issuer.yaml
+kubectl apply -f root-ca.yaml
+kubectl apply -f ca-issuer.yaml
+# 4.6.4 Install sealed secrets
+helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
+helm repo update
+helm install sealed-secrets-controller sealed-secrets/sealed-secrets \
+  --namespace auth \
+  --set-string fullnameOverride=sealed-secrets-controller
+# 4.7 once the sealed-secret manager is up and running, create all secrets - see 03-secrets.sh
 
 
 # ----------------------------------------- 5. and GO ...  -------------------------------------
@@ -158,3 +177,8 @@ s3.bucket.create -name loki-ruler
 s3.bucket.create -name loki-admin
 
 s3.bucket.list
+
+# ----------------------------------------- X. add root ca -----------------------------------
+kubectl get secret root-ca-secret -n cert-manager -o jsonpath='{.data.ca\.crt}' | base64 -d > df-test-ca.crt
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain df-test-ca.crt
+# for windows: Double-click df-test-ca.crt -> "Install Certificate" -> "Local Machine" -> "Place all certificates in the following store" -> "Trusted Root Certification Authorities".

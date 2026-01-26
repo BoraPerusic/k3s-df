@@ -50,8 +50,8 @@ datasources:
 grafana.ini:
   server:
     # Critical for the redirect to work correctly
-    root_url: https://192.168.1.38:7002
-    domain: 192.168.1.38
+    root_url: https://${CLUSTER_IP}:${GRAFANA_PORT}
+    domain: ${CLUSTER_IP}
 
   auth.generic_oauth:
     enabled: true
@@ -60,9 +60,9 @@ grafana.ini:
     client_id: $__file{/etc/secrets/auth_grafana_keycloak_oauth/client_id}
     client_secret: $__file{/etc/secrets/auth_grafana_keycloak_oauth/client_secret}
     scopes: openid profile email offline_access roles
-    auth_url: https://192.168.1.38:7001/realms/bp-dsk/protocol/openid-connect/auth
-    token_url: https://192.168.1.38:7001/realms/bp-dsk/protocol/openid-connect/token
-    api_url: https://192.168.1.38:7001/realms/bp-dsk/protocol/openid-connect/userinfo
+    auth_url: https://${CLUSTER_IP}:${KC_PORT}/realms/${KC_REALM}/protocol/openid-connect/auth
+    token_url: https://${CLUSTER_IP}:${KC_PORT}/realms/${KC_REALM}/protocol/openid-connect/token
+    api_url: https://${CLUSTER_IP}:${KC_PORT}/realms/${KC_REALM}/protocol/openid-connect/userinfo
 
     # Since we are using self-signed certs (or custom CA), Grafana will fail
     # to call Keycloak unless we verify skip or mount the CA.

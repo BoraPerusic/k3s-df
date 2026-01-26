@@ -1,7 +1,7 @@
 # Fetch the certificate that can be used to seal the secrets
 kubeseal \
   --controller-name=sealed-secrets-controller \
-  --controller-namespace=kube-system \
+  --controller-namespace=auth \
   --fetch-cert > pub-sealed-secrets.pem
 
 
@@ -20,7 +20,7 @@ kubeseal --controller-name=sealed-secrets-controller \
 
 
 # Docker Hub
-ubectl create secret generic docker-hub-creds \
+kubectl create secret generic docker-hub-creds \
   --namespace argocd \
   --from-literal=url=registry-1.docker.io \
   --from-literal=username=boraperusic \
@@ -61,9 +61,9 @@ kubectl create secret generic monitoring-creds \
   --from-literal=access_key_id="admin" \
   --from-literal=secret_access_key="SafePassword123!" \
   --namespace monitoring \
-  --dry-run=client -o yaml > raw-monitoring-creds.yaml
+  --dry-run=client -o yaml > raw-mon-creds.yaml
 
-kubeseal --cert=pub-sealed-secrets.pem --format=yaml < raw-monitoring-creds.yaml > sealed-monitoring-creds.yaml
+kubeseal --cert=pub-sealed-secrets.pem --format=yaml < raw-mon-creds.yaml > sealed-mon-creds.yaml
 
 
 # Grafana (part of Prometheus Stack)
@@ -80,7 +80,7 @@ kubeseal --controller-name=sealed-secrets-controller \
 # Grafana ouath (Keycloak) secret (when keycloak secret is up and running)
 kubectl create secret generic grafana-oauth-keycloak-creds \
   --from-literal=client_id=grafana \
-  --from-literal=client_secret=93lZiunmjSbNOUgBS2OZE7YYz6oMR7Rr \
+  --from-literal=client_secret=FcOLfvEuX2n6JZnrQg89g8euNRKcZtxY \
   --namespace monitoring \
   --dry-run=client -o yaml > raw-grafana-oauth-keycloak-creds.yaml
 
