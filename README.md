@@ -19,24 +19,12 @@ We have prepared detailed documentation for different audiences:
 
 ### Installation
 The `00-bootstrap/` directory contains the scripts to install K3s and Argo CD from scratch.
-```bash
-# Initialize the cluster and install Argo CD
-./00-bootstrap/00-install-base.sh
-```
 
-If installing the local version, install the sealed-secrets controller first with the monitoring disabled, and enable it later when Prometheus is installed:
-```yaml
-sealed-secrets:
-  fullnameOverride: sealed-secrets-controller
-  
-  podSecurityContext:
-    enabled: true
-    fsGroup: 65534
-  
-  metrics:
-    serviceMonitor:
-      enabled: false  # <--- SET THIS TO FALSE
-      namespace: monitoring
+Refer to `00-bootstrap/00-install-base.sh` for the step-by-step installation procedure. This script serves as a runbook for bootstrapping the cluster.
+
+```bash
+# Example of commands found in the bootstrap script:
+./00-bootstrap/00-install-base.sh
 ```
 
 ### Accessing Dashboards
@@ -53,7 +41,8 @@ kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-pass
 
 ## Repository Structure
 
-*   `00-bootstrap`: Initial cluster setup.
-*   `apps/templates`: Argo CD Application definitions.
+*   `00-bootstrap`: Initial cluster setup scripts and manifests.
+*   `clusters/`: Contains cluster-specific configurations (e.g., `bp-dsk`, `df-test`).
+    *   `applications/`: The specific applications enabled for each cluster.
 *   `platform`: Helm charts and configuration for infrastructure components.
-*   `root-app.yaml`: The main entry point for Argo CD.
+*   `root-app-bp-dsk.yaml` / `root-app-df-test.yaml`: The main entry points for Argo CD for each cluster.
