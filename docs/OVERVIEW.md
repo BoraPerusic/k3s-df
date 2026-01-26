@@ -12,8 +12,8 @@ In a traditional setup, you might manually deploy each application or have a sep
 
 The **App-of-Apps** pattern treats the entire cluster state as a hierarchical tree of applications.
 
-1.  **Root Application:** There is one "master" application (defined in `root-app.yaml`) that is responsible for only one thing: finding other applications.
-2.  **Child Applications:** The root app points to a folder (`apps/templates`) containing definitions for other applications (like Database, Monitoring, Microservices).
+1.  **Root Application:** There is a "master" application per cluster (e.g., `root-app-bp-dsk.yaml`) that is responsible for only one thing: finding other applications.
+2.  **Child Applications:** The root app points to a cluster-specific folder (e.g., `clusters/bp-dsk/applications`) containing definitions for other applications (like Database, Monitoring, Microservices).
 3.  **Infrastructure as Code (IaC):** Every change to the cluster (adding a service, changing a configuration, updating a version) is done by changing a file in this Git repository.
 
 ## Why use this approach?
@@ -26,7 +26,7 @@ Instead of one giant file defining everything, we split components into logical 
 -   **Platform:** Shared infrastructure like Databases (`data`) and Monitoring (`monitoring`).
 -   **Apps:** The actual business applications.
 
-This modularity allows teams to work on specific parts without affecting the whole system. Adding a new application is as simple as adding one file.
+This modularity allows teams to work on specific parts without affecting the whole system. Adding a new application is as simple as adding one file to the appropriate cluster folder.
 
 ### 3. Automated Updates & Self-Healing
 Argo CD constantly watches this repository.
@@ -34,7 +34,7 @@ Argo CD constantly watches this repository.
 -   **Self-Healing:** If a resource is deleted by mistake in the cluster, Argo CD sees that it is missing (compared to the Git repo) and recreates it.
 
 ### 4. Disaster Recovery
-Because the entire setup is code, recreating the entire environment from scratch is extremely fast. We simply bootstrap the cluster and apply the `root-app.yaml`. The system will then recursively install everything else.
+Because the entire setup is code, recreating the entire environment from scratch is extremely fast. We simply bootstrap the cluster and apply the relevant root application. The system will then recursively install everything else.
 
 ## High-Level Diagram
 
