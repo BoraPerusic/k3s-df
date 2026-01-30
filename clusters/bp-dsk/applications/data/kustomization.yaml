@@ -3,5 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../../../platform/data/seaweed/overlays/bp-dsk
+  - ../../../../platform/data/postgresql/overlays/bp-dsk
+  - ../../../../platform/data/mssql/overlays/bp-dsk
   - certificate.yaml
 
