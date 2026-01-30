@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: mssql-db-creds
+  namespace: data
+spec:
+  encryptedData:
+    sa-password: AgB4LCn92/VJDh9BflyRFV9MKF3HPSvG6Ht/5SxA1W7/NWFfAf0+cuBzgPl9adj1Czr29DQACaKPlo34F9VcdK3W/uHUMLD2D5UlI4/KfXpGZWzmNATltk4J6KJe8RiBsR+oXP+De6CdlzBhTjQzdjx8GZ7wtd9nj2LbOTP8jEMc1nPL4Sk6Ti8cC9DXhUF1aWD51isONoy/zltd62nEea1vKieSX07rH1iFPUvXaZ7OCYjop7JxLxJ/rC8i02hp5mRZsMLNfM1MBqW4oL3dh1xjIAmE/zcOdMXTCaZI2VfwH8rPaTfq0coOTDWT3VRodr2OMNBgAsuci+QK/xvOzKIUnEx4+HvKBnBiVDaoJ7+YcSyVALJ4qGrB3yaVT9FXybZqy+7iRBW+Do0Ry4rYW8bbaBWTSpObKACwRScB7vRLlUX5/lot8GaC0a+I41aFeGpw+J7LKp4DJBHert3Sf8olr+IIlfoalpf5jB2z4I/YoeGjQ+auGxxItgAmGeQVsvyXz3oNArAVs9fVkU/4VPooX319/247EFalq59T1uXIJ+0h8Y9HHq31bHh/VyBqgD+0/3C6K6lRuGmb14eaigcuqbXh53ywou2FwtmF8/033pTFmlJuP7RHatmymq063Okatm1I8a2GMQpgc2662uZT+izv5Qj5aOUPPkADgxdfWzSZyNjF75MHWk51/j9Bb9Ba9CYARQhJsvSHnOcyQLV+QA==
+  template:
+    metadata:
+      name: mssql-db-creds
+      namespace: data
