@@ -36,7 +36,7 @@ spec:
                   name: mssql-db-creds
                   key: sa-password
           volumeMounts:
-            - name: mssql
+            - name: data-mssql
               mountPath: "/var/opt/mssql"
   volumeClaimTemplates:
     - metadata:
