@@ -88,3 +88,26 @@ kubectl create secret generic grafana-oauth-keycloak-creds \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-grafana-oauth-keycloak-creds.yaml > sealed-grafana-oauth-keycloak-creds.yaml
+
+# PostgreSQL
+kubectl create secret generic postgres-db-creds \
+  --from-literal=postgres-password="PgSqlAdminSecretHere" \
+  --from-literal=password="PostgreSQLSecretHere" \
+  --from-literal=name="dfpartner" \
+  --from-literal=database="dfpartner" \
+  --namespace data \
+  --dry-run=client -o yaml > raw-postgres-db-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-postgres-db-creds.yaml > sealed-postgres-db-creds.yaml
+
+# MS SQL Creds
+kubectl create secret generic mssql-db-creds \
+  --from-literal=sa-password="MsSqlSASecretHere" \
+  --namespace data \
+  --dry-run=client -o yaml > raw-mssql-db-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-mssql-db-creds.yaml > sealed-mssql-db-creds.yaml

@@ -4,4 +4,6 @@ kind: Kustomization
 resources:
   - ../../../../platform/auth/db/overlays/bp-dsk
   - ../../../../platform/auth/keycloak/overlays/bp-dsk
+  - ../../../../platform/auth/cert-manager
+  - ../../../../platform/auth/sealed-secrets
   - certificate.yaml

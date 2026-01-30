@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: data
+
+# Import the Sealed Secret here so the DB can find it
+resources:
+  - sealed-postgres-db-creds.yaml
+
+helmCharts:
+  - name: postgres
+    repo: oci://registry-1.docker.io/cloudpirates
+    version: 0.14.1
+    releaseName: data-postgres
+    namespace: data
+    valuesFile: ../../base/values.yaml
