@@ -12,7 +12,7 @@ patches:
   # patches the service so that it uses LoadBalancer and remaps the port
   - target:
       kind: Service
-      name: mssql
+      name: data-mssql
     patch: |-
       - op: replace
         path: /spec/type
@@ -20,4 +20,4 @@ patches:
       
       - op: replace
         path: /spec/ports/0/port
-        value: 7143  # External Port (Arbitrary choice, e.g., 7143)
+        value: 7443  # External Port (Arbitrary choice, e.g., 7143)
