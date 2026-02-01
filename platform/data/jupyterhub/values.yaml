@@ -1,0 +1,45 @@
+# infrastructure/jupyterhub/values.yaml
+
+jupyterhub: # This must match the 'name' in Chart.yaml dependencies
+  proxy:
+    service:
+      type: ClusterIP # Use ClusterIP if you have an Ingress controller on K3s
+
+  singleuser:
+    image:
+      name: your-registry/polyglot-notebook
+      tag: v1.0.0
+    extraConfig:
+      s3_storage: |
+        from s3contents import S3ContentsManager
+        c.JupyterHub.spawner_class.contents_manager_class = S3ContentsManager
+        c.S3ContentsManager.endpoint_url = "http://seaweedfs-s3:8333"
+        c.S3ContentsManager.bucket = "notebooks"
+        c.S3ContentsManager.access_key_id = "your-key"
+        c.S3ContentsManager.secret_access_key = "your-secret"
+#    storage:
+#      type: dynamic
+#      capacity: 10Gi
+#      dynamic:
+#        storageClass: local-path # K3s default storage class
+#      cpu:
+#        limit: 1
+#        guarantee: 0.5
+#      memory:
+#        limit: 2G
+#        guarantee: 1G
+    extraEnv:
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: jupyter-db-creds
+            key: password
+
+  hub:
+    config:
+      Authenticator:
+        admin_users:
+          - your_username
+    db:
+      type: postgres
+      url: postgresql://jhub_user:password@postgres-service:5432/jhub_db

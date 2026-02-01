@@ -1,0 +1,9 @@
+apiVersion: v2
+name: platform-jupyterhub
+description: Custom JupyterHub for Python/Kotlin Microservices
+type: application
+version: 1.0.0
+dependencies:
+  - name: jupyterhub
+    version: "4.3.2"
+    repository: "https://hub.jupyter.org/helm-chart/"

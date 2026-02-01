@@ -1,0 +1,19 @@
+# Use a lightweight but capable base
+FROM jupyter/minimal-notebook:python-3.11
+
+USER root
+# Install Java (Required for Kotlin kernel)
+RUN apt-get update && apt-get install -y openjdk-17-jre-headless && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER ${NB_USER}
+
+# 1. Install Kotlin Kernel
+RUN pip install kotlin-jupyter-kernel
+
+# 2. Install Python SQL tools
+RUN pip install ipython-sql SQLAlchemy psycopg2-binary # or your DB driver
+
+# 3. Pre-install Kotlin Data/SQL libraries
+# The Kotlin kernel downloads libraries on demand, but we can pre-cache
+# basic tools if needed or just let the notebook handle it.
