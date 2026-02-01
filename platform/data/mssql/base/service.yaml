@@ -7,6 +7,6 @@ spec:
     app: data-mssql
   ports:
     - protocol: TCP
-      port: 1433
+      port: 7433
       targetPort: 1433
   type: ClusterIP
