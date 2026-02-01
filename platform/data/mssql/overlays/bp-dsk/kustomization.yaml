@@ -7,3 +7,17 @@ namespace: data
 resources:
   - ../../base
   - sealed-mssql-db-creds.yaml
+
+patches:
+  # patches the service so that it uses LoadBalancer and remaps the port
+  - target:
+      kind: Service
+      name: mssql
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: LoadBalancer
+      
+      - op: replace
+        path: /spec/ports/0/port
+        value: 7143  # External Port (Arbitrary choice, e.g., 7143)
