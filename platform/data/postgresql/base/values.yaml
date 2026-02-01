@@ -42,7 +42,6 @@ primary:
     # 1. Open to the network
     type: LoadBalancer
     # 2. Define the "Service Port" (This will be the External AND Internal port)
-    ports:
-      postgresql: 7432
+    port: 7432
     # 3. Point to the container's actual port
     targetPort: 5432
