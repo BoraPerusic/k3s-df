@@ -38,10 +38,10 @@ primary:
       memory: 1024Mi
 
   # 5. port remapping
-  service:
-    # 1. Open to the network
-    type: LoadBalancer
-    # 2. Define the "Service Port" (This will be the External AND Internal port)
-    port: 7432
-    # 3. Point to the container's actual port
-    targetPort: 5432
+service:
+  # 1. Open to the network
+  type: LoadBalancer
+  # 2. Define the "Service Port" (This will be the External AND Internal port)
+  port: 7432
+  # 3. Point to the container's actual port
+  targetPort: 5432
