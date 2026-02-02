@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: data
 
-resources:
-  - sealed-neo4j-onto-creds.yaml
+#resources:
+#  - sealed-neo4j-onto-creds.yaml
 
-patches:
-  - path: patch-auth.yaml
+#patches:
+#  - path: patch-auth.yaml
 
 helmCharts:
   - name: neo4j
