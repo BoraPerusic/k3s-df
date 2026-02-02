@@ -7,6 +7,6 @@ resources:
   - ../../../../platform/data/mssql/overlays/bp-dsk
   - ../../../../platform/data/opensearch/overlays/bp-dsk
   - ../../../../platform/data/qdrant/overlays/bp-dsk
-  - ../../../../platform/data/neo4j/overlays/bp-dsk-onto
+  - ../../../../platform/data/neo4j-onto/overlays/bp-dsk
   - certificate.yaml
 

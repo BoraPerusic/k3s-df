@@ -1,6 +1,7 @@
 neo4j:
   edition: "community"
   password: "ignored"
+  name: neo4j-onto
 
 # Volumes for Neo4j
 volumes:
@@ -69,6 +70,7 @@ jvm:
 
 statefulset:
   metadata:
+    name: "neo4j-onto"
     #Annotations for Neo4j StatefulSet
     annotations:
 #      imageregistry: "https://hub.docker.com/"

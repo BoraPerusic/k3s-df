@@ -3,7 +3,10 @@ kind: Kustomization
 namespace: data
 
 resources:
-  - sealed-neo4j-rag-creds.yaml
+  - sealed-neo4j-onto-creds.yaml
+
+patches:
+  - path: patch-auth.yaml
 
 helmCharts:
   - name: neo4j
@@ -12,5 +15,3 @@ helmCharts:
     releaseName: neo4j
     namespace: data
     valuesFile: ../../base/values.yaml
-    additionalValuesFiles:
-      - rag-values.yaml

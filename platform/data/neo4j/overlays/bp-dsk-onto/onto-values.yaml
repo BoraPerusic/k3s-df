@@ -1,3 +1,0 @@
-neo4j:
-  name: neo4j-onto
-#  passwordFromSecret: "neo4j-onto-creds"
