@@ -18,3 +18,10 @@ persistence:
   enabled: true
   size: 10Gi
   storageClass: local-path
+
+extraEnvs:
+  - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: opensearch-admin-creds
+        key: admin-password

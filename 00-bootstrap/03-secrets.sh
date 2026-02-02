@@ -142,3 +142,14 @@ kubectl create secret generic qdrant-apikey \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-qdrant-apikey.yaml > sealed-qdrant-apikey.yaml
+
+
+# Opensearch
+kubectl create secret generic opensearch-admin-creds \
+  --from-literal=admin-password="StrongPassword123!" \
+  --namespace data \
+  --dry-run=client -o yaml > raw-opensearch-admin-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-opensearch-admin-creds.yaml > sealed-opensearch-admin-creds.yaml

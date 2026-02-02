@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: opensearch-admin-creds
+  namespace: data
+spec:
+  encryptedData:
+    admin-password: AgBQi7Ab/zTMrX+sqppaEEe5P0l33lzCuZeS1JbMfSx9pJxQTAwbmqG9EQ2AAsChb/GufeIhNin8Wj68B7QfyQqbIEizkLFiyKShq1kLX5apnxNrL3MoBsyqpjSxR/hLbfgw0L91/tjUSLZtXRZgCbpijqR8qO+jrf0fSMrVi/ssCWCAeGfkA/nHdzAO2sGFbmzR+ZQVQYU45D59FPo0TF4EWPoPmw2jsaRMGV8PG7/EqVsVBVOWkZ0oN5/+5Oh9SzeVkzxlYNC/lm1khMv+u/OCShJ4kObqZQue//2ZG9SYnca4xoHH6V72CayOpZU3Jpf5CgbxAWvVN/8pXDdsQqyvpLLzRiQFGSCvhaNNHcviZe8SSxZie9NBulySLZG+z1l6eak8lEOKOSnQhsweNULhP5KSVUDD+85fiDWlj4LFhJReP6l0LrjAT+B0C9pXYhwNuv1ixJO31fQAt//LftmHSFxEBtMEJ6MTIdr/dgrWhp0nLo0/bAw08ML8L9ueWIUsW9x7z5hBD0u2zwgUom/0/OcNbIfF59CYy6wj91st6jzKMhxY2lGksP1dQH4MMtBvHjc85JHyLjCfvwOjxgag29FdMszTorDjnRWd95lIbF43MV7/81eskGgINCCQAT70S3xWUbhXl2J1MQ2iLt4P4BSNNL8q1E82QSwtLiovSYTYdTeFzN3uMRclc2xH9UiYOo+98mweQcGmZyBmwh35SqU=
+  template:
+    metadata:
+      name: opensearch-admin-creds
+      namespace: data
