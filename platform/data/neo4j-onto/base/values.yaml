@@ -52,7 +52,7 @@ secretMounts: {}
 
 # Override image settings in Neo4j pod
 image:
-  imagePullPolicy: IfNotPresento
+  imagePullPolicy: IfNotPresent
 
 # print the neo4j user password set during install to the `helm install` log
 logInitialPassword: true
