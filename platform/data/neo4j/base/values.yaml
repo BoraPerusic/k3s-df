@@ -14,7 +14,7 @@ volumes:
     # REQUIRED: specify a volume mode to use for data
     # Valid values are share|selector|defaultStorageClass|volume|volumeClaimTemplate|dynamic
     # To get up-and-running quickly, for development or testing, use "defaultStorageClass" for a dynamically provisioned volume of the default storage class.
-    mode: defaultStorageClass""
+    mode: defaultStorageClass
 
     # Only used if mode is set to "defaultStorageClass"
     # Dynamic provisioning using the default storageClass
