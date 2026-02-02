@@ -5,6 +5,9 @@ namespace: data
 resources:
   - sealed-neo4j-onto-creds.yaml
 
+patches:
+  - path: patch-auth.yaml
+
 helmCharts:
   - name: neo4j
     repo: https://neo4j.github.io/helm-charts/

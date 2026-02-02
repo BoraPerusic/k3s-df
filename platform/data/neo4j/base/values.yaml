@@ -1,5 +1,6 @@
 neo4j:
   edition: "community"
+  password: "ignored"
 
 # Volumes for Neo4j
 volumes:
