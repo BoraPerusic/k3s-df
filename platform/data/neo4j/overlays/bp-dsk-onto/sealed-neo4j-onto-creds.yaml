@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: neo4j-onto-creds
+  namespace: data
+spec:
+  encryptedData:
+    NEO4J_AUTH: AgBe88lF6nqRpSmFALQviTyjmmxAScrE6G31zKlDMi2/GIqi9igsSuTqAO4YndLSg0bMjEWXTpx6HDo4iCUdOtVgxc3Kzg+RCQC5W1WoutsPiWPYz42Nb9in0n7ZKaVnYUVcpV6n92nr/qBT4X/RsouhAKU09xqNjj8S3LRHDhAeWYbeRadAckKkVq2yqMWHNrkem/p/OfEtp6hUdir+ZwJuWEq6XS/L150ot+TACdk6OVJa0JNEMQxXFSB+IdpRh5JpurfGCQlGrZIKs9srFdl84jwuFF5FMR66VgvH0kXQyhTpggnSWbrTFC5l+lZZC5O2iWtsM+74sGXOY8i711xBrg8oXFiKZyNM5eVV2rX9YqTmF+UqhQh+fMsMTsWL/4i+onepCku0Nf+DhjkIGIB+CPohR6Zvnfdw7aG0/oiJ82i340295y18Sfc7avfjcPMrHl3Lvy6WPQlhGCqtU9Vm33frLbWBHcpuRBXsMpE5uuT5WUBImUvOFubCI8Ga/SBrYyU+OffBI2kgj5f3OKqBBKqFniW7iPbU4ZzYXnaklUYN1hg85SHz3gFnRfamoIlVALcci5z01StRI2SagDJqMXgV+yeV4yKLnmnq6Pi9Bma01yxEeJEVB6vmZxrJhWG2M/j9jxpyy7HD1LmR09JWRr5+p6omoRwdWWZCqZfuGhKVqaMdCdJorRjid5NwouH6giC9hcNp8+BB9aOTOqrNpvFK
+  template:
+    metadata:
+      name: neo4j-onto-creds
+      namespace: data

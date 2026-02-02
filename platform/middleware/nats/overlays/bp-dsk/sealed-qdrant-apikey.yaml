@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: qdrant-apikey
+  namespace: data
+spec:
+  encryptedData:
+    apikey: AgCzg14cjYedfDXLmylifNVgWXofpfKfeR5ebj/18cd/YuAQWYOgCGOJDZvr7UzaQOzzu5JuYqITWWZ+qcwQ3U8qTWywgWcnCAn3ndcttb92qk/ttm42HT2SinKI3Ys4OPZGdb2ILZa5h6CXihkc+HMrNFYQIyIJO2rR2rCMtIi8TaX1AdY8KN7frV3pM/hfPfz3Cy64FpBq2GM+pHv2xAX0RFMRbxmNzBIgh5RUtaYc5oREYVbKL7n2ehvUUxwSPEO3B06iMOzqSxLgVRLaHguBwQY51yexJo9FWA2cYU+EMWuEfepH6VUWE8Di+lLoI0vSd3snXDg/7cpTT3yoJh3J5X3kW9b7ImydmAfVCYwNHolUttJJ7Bl501rDRhvHmBraGMepHFf/az3x5s9UtK6dwcua80h5Ff+jk+XOzubaAS11YPIzolOhfiNZ+W+jrYB+ep4t5uoKNlGVlN3WF/oW2d45/RgfFjGmdstBv/GZ6Qwysfhh0EJzJUF+04ZdGcNiSK1WBHOQaLbehKXktgwSZ4LrfzRgyoO+zPIXe0eUbZGTJsgfwTLc1K/x2/59GVLnVodA5AUiGAXA29we0kX6+u2v8Q2vtsjrFUfD3G85KIbIKtu68kVQGHrrrCa7obIBW6PHwvGa/eBk0Hy2SEs243ueBHMhknRs8CDTJ6xPfUcJh7vmLfSS4PDHVrfarB5EHYDDb4WPvYc=
+  template:
+    metadata:
+      name: qdrant-apikey
+      namespace: data

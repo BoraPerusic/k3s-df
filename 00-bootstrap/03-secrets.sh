@@ -111,3 +111,34 @@ kubectl create secret generic mssql-db-creds \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-mssql-db-creds.yaml > sealed-mssql-db-creds.yaml
+
+
+# Neo4J
+# onto
+kubectl create secret generic neo4j-onto-creds \
+  --from-literal=NEO4J_AUTH=neo4j/SuperSecretPassword! \
+  --namespace data \
+  --dry-run=client -o yaml > raw-neo4j-onto-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-neo4j-onto-creds.yaml > sealed-neo4j-onto-creds.yaml
+# rag
+kubectl create secret generic neo4j-rag-creds \
+  --from-literal=NEO4J_AUTH=neo4j/SuperSecretPassword! \
+  --namespace data \
+  --dry-run=client -o yaml > raw-neo4j-rag-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-neo4j-rag-creds.yaml > sealed-neo4j-rag-creds.yaml
+
+# Qdrant - API key
+kubectl create secret generic qdrant-apikey \
+  --from-literal=apikey="my-safe-apikey" \
+  --namespace data \
+  --dry-run=client -o yaml > raw-qdrant-apikey.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-qdrant-apikey.yaml > sealed-qdrant-apikey.yaml

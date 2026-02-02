@@ -1,0 +1,33 @@
+replicaCount: 1
+
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClassName: local-path
+
+# Expose HTTP (6333) and GRPC (6334)
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6333
+      targetPort: 6333
+    - name: grpc
+      port: 6334
+      targetPort: 6334
+
+resources:
+  requests:
+    memory: 256Mi
+  limits:
+    memory: 1Gi
+
+apiKey: true # Enable API key support
+
+# Map the secret to the environment variable Qdrant expects
+env:
+  - name: QDRANT__SERVICE__API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: qdrant-apikey
+        key: apikey

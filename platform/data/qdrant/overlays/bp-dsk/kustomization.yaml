@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: data
+
+resources:
+  - sealed-qdrant-apikey.yaml
+
+helmCharts:
+  - name: qdrant
+    repo: https://qdrant.github.io/qdrant-helm
+    version: 1.16.3
+    releaseName: qdrant
+    namespace: data
+    valuesFile: ../../base/values.yaml

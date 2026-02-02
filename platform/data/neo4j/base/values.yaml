@@ -1,0 +1,78 @@
+neo4j:
+  edition: "community"
+
+# Volumes for Neo4j
+volumes:
+  data:
+    #labels for data pvc on creation (Valid only when mode set to selector | defaultStorageClass | dynamic | volumeClaimTemplate)
+    labels: {}
+
+    # Set it to true when you do not want to use the subPathExpr
+    disableSubPathExpr: false
+
+    # REQUIRED: specify a volume mode to use for data
+    # Valid values are share|selector|defaultStorageClass|volume|volumeClaimTemplate|dynamic
+    # To get up-and-running quickly, for development or testing, use "defaultStorageClass" for a dynamically provisioned volume of the default storage class.
+    mode: defaultStorageClass""
+
+    # Only used if mode is set to "defaultStorageClass"
+    # Dynamic provisioning using the default storageClass
+    defaultStorageClass:
+      accessModes:
+        - ReadWriteOnce
+      requests:
+        storage: 10Gi
+
+
+# add additional volumes and their respective mounts
+additionalVolumes: []
+#  - name: neo4j1-conf
+#    emptyDir: {}
+additionalVolumeMounts: []
+#  - mountPath: "/config/neo4j1.conf"
+#    name: neo4j1-conf
+
+# Mount Kubernetes secrets into the Neo4j pod for use with seedURI operations
+secretMounts: {}
+#  # Example: Mount S3 credentials for seedURI restoration from private S3 buckets
+#  s3-credentials:
+#    secretName: "my-s3-secret"
+#    mountPath: "/var/secrets/s3"
+#    # Optional: specify individual keys from the secret to mount (if not specified, all keys are mounted)
+#    items:
+#      - key: "access-key"
+#        path: "access-key"
+#      - key: "secret-key"
+#        path: "secret-key"
+#    # Optional: set file permissions for mounted files (default: 0644)
+#    defaultMode: 0600
+
+# Override image settings in Neo4j pod
+image:
+  imagePullPolicy: IfNotPresento
+
+# print the neo4j user password set during install to the `helm install` log
+logInitialPassword: true
+
+# Jvm configuration for Neo4j
+jvm:
+  # If true any additional arguments are added after the Neo4j default jvm arguments.
+  # If false Neo4j default jvm arguments are not used.
+  useNeo4jDefaultJvmArguments: true
+  # additionalJvmArguments is a list of strings. Each jvm argument should be a separate element:
+  additionalJvmArguments: []
+#   - "-XX:+HeapDumpOnOutOfMemoryError"
+#   - "-XX:HeapDumpPath=/logs/neo4j.hprof"
+#   - "-XX:MaxMetaspaceSize=180m"
+#   - "-XX:ReservedCodeCacheSize=40m"
+
+statefulset:
+  metadata:
+    #Annotations for Neo4j StatefulSet
+    annotations:
+#      imageregistry: "https://hub.docker.com/"
+#      demo: alpha
+
+# additional environment variables for the Neo4j Container
+env: {}
+

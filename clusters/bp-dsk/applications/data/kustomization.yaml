@@ -5,5 +5,7 @@ resources:
   - ../../../../platform/data/seaweed/overlays/bp-dsk
   - ../../../../platform/data/postgresql/overlays/bp-dsk
   - ../../../../platform/data/mssql/overlays/bp-dsk
+  - ../../../../platform/data/opensearch/overlays/bp-dsk
+  - ../../../../platform/data/qdrant/overlays/bp-dsk
   - certificate.yaml
 

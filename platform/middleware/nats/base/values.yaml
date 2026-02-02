@@ -1,0 +1,23 @@
+# Run as a single server for local (Cluster mode requires 3 nodes)
+config:
+  cluster:
+    enabled: false
+
+  # Enable JetStream (Persistence)
+  jetstream:
+    enabled: true
+    # Storage setting "file" is preferred for persistence over "memory"
+    domain: local
+    max_memory_store: 128MB
+    max_file_store: 2GB
+
+# Persistence for JetStream data
+container:
+  image:
+    repository: nats
+    tag: 2.12.4-alpine
+
+store:
+  enabled: true
+  storageClass: local-path
+  size: 2Gi

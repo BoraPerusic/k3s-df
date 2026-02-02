@@ -1,0 +1,20 @@
+# Run as a single instance for local dev
+singleNode: true
+replicas: 1
+
+# Minimal Resources
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+
+# Java Heap settings (Must be 50% of memory limit)
+opensearchJavaOpts: "-Xmx1024M -Xms1024M"
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClass: local-path
