@@ -1,3 +1,4 @@
+fullnameOverride: "neo4j-onto"
 neo4j:
   edition: "community"
   password: "ignored"
