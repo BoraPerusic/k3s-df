@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: bp-dsk-apps
+  name: bp-dsk-applications
   namespace: argocd
 spec:
   # 1. GENERATOR: "Find Directories"
