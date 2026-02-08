@@ -3,6 +3,9 @@ kind: ClusterSecretStore
 metadata:
   name: azure-store
   # No namespace needed - it's cluster-scoped
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   provider:
     azurekv:
