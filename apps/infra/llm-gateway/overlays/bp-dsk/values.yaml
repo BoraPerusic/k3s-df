@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: tatrman.azurecr.io/llm-gateway
+  tag: "v0.1.2"
+  pullPolicy: Always
+
+# CRITICAL: Tell the pod to use the secret we defined above
+imagePullSecrets:
+  - name: acr-pull-secret
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000 # Python/FastAPI usually runs on 8000
+
+env:
+  LOG_LEVEL: "DEBUG"
+  # Add other env vars here

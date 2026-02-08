@@ -11,6 +11,8 @@ resources:
   - sys-cert-manager/root-ca.yaml
   - sys-cert-manager/ca-issuer.yaml
   - certificate.yaml
-  - project.yaml
+  - project-ops.yaml
+  - project-apps.yaml
   # 4. The Application Generator (The AppSet)
-  - appset.yaml
+  - appset-ops.yaml
+  - appset-apps.yaml

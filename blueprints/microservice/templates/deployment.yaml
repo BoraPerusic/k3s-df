@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "microservice-chart.fullname" . }}
+  name: {{ include "microservice.fullname" . }}
   labels:
-    app: {{ include "microservice-chart.fullname" . }}
+    app: {{ include "microservice.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "microservice-chart.fullname" . }}
+      app: {{ include "microservice.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ include "microservice-chart.fullname" . }}
+        app: {{ include "microservice.fullname" . }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
