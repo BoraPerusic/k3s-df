@@ -7,3 +7,13 @@ helmCharts:
     repo: https://charts.external-secrets.io
     namespace: auth
     includeCRDs: true
+
+# Add this patch to inject the ArgoCD sync option into the CRDs
+patches:
+  - target:
+      kind: CustomResourceDefinition
+      name: ".*\\.external-secrets\\.io" # Regex to match all ESO CRDs
+    patch: |-
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1sync-options
+        value: ServerSideApply=true
