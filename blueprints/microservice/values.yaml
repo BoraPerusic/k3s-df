@@ -36,3 +36,8 @@ observability:
   otlp:
     enabled: true
     endpoint: "http://alloy.monitoring.svc:4317" # The internal gRPC address of Alloy
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
