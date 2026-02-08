@@ -13,3 +13,6 @@ resources:
 
   # 3. Create the Store (configuration)
   - ../../../platform/auth/external-secrets/stores/bp-dsk
+
+  # 4. Create the external secret
+  - ../../../platform/auth/external-secrets/secrets/bp-dsk
