@@ -8,9 +8,6 @@ image:
   pullPolicy: IfNotPresent
   tag: "" # defaults to appVersion
 
-imagePullSecrets:
-  - name: acr-pull-secret-infra
-
 # 2. Scaling (Default to 1 for your low-load env)
 replicaCount: 1
 
