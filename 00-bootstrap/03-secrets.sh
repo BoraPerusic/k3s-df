@@ -153,3 +153,15 @@ kubectl create secret generic opensearch-admin-creds \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-opensearch-admin-creds.yaml > sealed-opensearch-admin-creds.yaml
+
+
+# Azure KV
+kubectl create secret generic eso-bootstrap-auth \
+  --from-literal=client-id="Azure Client ID" \
+  --from-literal=client-secret="Azure Client Secret" \
+  --namespace auth \
+  --dry-run=client -o yaml > raw-eso-bootstrap-auth.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-eso-bootstrap-auth.yaml > sealed-eso-bootstrap-auth.yaml

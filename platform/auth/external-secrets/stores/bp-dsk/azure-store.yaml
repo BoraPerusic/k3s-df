@@ -1,0 +1,20 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: azure-store
+  # No namespace needed - it's cluster-scoped
+spec:
+  provider:
+    azurekv:
+      authType: ServicePrincipal
+      vaultUrl: "https://tatrman-kv.vault.azure.net"
+      tenantId: "a42c9eb9-bf43-4343-8e75-678df86fa38d"
+      authSecretRef:
+        clientId:
+          name: eso-bootstrap-auth
+          key: client-id
+          namespace: auth
+        clientSecret:
+          name: eso-bootstrap-auth
+          key: client-secret
+          namespace: auth

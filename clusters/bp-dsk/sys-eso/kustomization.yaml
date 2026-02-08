@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Ensure the namespace exists first
+namespace: auth
+
+resources:
+  # 1. Install the Operator (software)
+  - ../../../platform/auth/external-secrets/operator
+
+  # 2. Create the Bootstrap Secret (must exist before the store can work)
+  - sealed-eso-bootstrap-auth.yaml
+
+  # 3. Create the Store (configuration)
+  - ../../../platform/auth/external-secrets/stores/bp-dsk
