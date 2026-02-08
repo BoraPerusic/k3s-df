@@ -7,7 +7,7 @@ image:
 
 # CRITICAL: Tell the pod to use the secret we defined above
 imagePullSecrets:
-  - name: acr-pull-secret
+  - name: acr-pull-secret-infra
 
 service:
   type: ClusterIP

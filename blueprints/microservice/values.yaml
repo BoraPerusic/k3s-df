@@ -38,6 +38,6 @@ observability:
     endpoint: "http://alloy.monitoring.svc:4317" # The internal gRPC address of Alloy
 
 serviceAccount:
-  create: false
+  create: true
   annotations: {}
   name: ""
