@@ -39,7 +39,7 @@ spec:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: {{ .Values.observability.otlp.endpoint | quote }}
             - name: OTEL_SERVICE_NAME
-              value: {{ include "microservice-chart.fullname" . | quote }}
+              value: {{ include "microservice.fullname" . | quote }}
             - name: OTEL_METRICS_EXPORTER
               value: "otlp"
             - name: OTEL_LOGS_EXPORTER
