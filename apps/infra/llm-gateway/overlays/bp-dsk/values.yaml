@@ -31,13 +31,14 @@ envFrom:
       name: bp-dsk-env
 
 env:
-  LOG_LEVEL: "DEBUG"
-  AZURE_OPENAI_API_KEY:
+  - name: LOG_LEVEL
+    value: "DEBUG"
+  - name: AZURE_OPENAI_API_KEY
     valueFrom:
       secretKeyRef:
         name: llm-gateway-creds
         key: azure-openai-api-key
-  LLM_GTW_DB_PASSWORD:
+  - name: LLM_GTW_DB_PASSWORD
     valueFrom:
       secretKeyRef:
         name: llm-gateway-creds
