@@ -62,8 +62,7 @@ spec:
               value: "otlp"
             {{- end }}
 
-            # 2. Inject User-Defined Variables
-            {{- range $key, $val := .Values.env }}
-            - name: {{ $key }}
-              value: {{ $val | quote }}
+            # 2. Inject User-Defined Variables (THE FIX)
+            {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
             {{- end }}
