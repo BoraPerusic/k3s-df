@@ -9,9 +9,22 @@ imagePullSecrets:
  - name: acr-pull-secret-infra
 
 service:
-  type: ClusterIP
-  port: 80
-  targetPort: 8000 # Python/FastAPI usually runs on 8000
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 7101
+      targetPort: 7101
+    - name: grpc
+      port: 7201
+      targetPort: 7201
+
+containerPorts:
+  - name: http
+    containerPort: 7101
+    protocol: TCP
+  - name: grpc
+    containerPort: 7201
+    protocol: TCP
 
 envFrom:
   - configMapRef:

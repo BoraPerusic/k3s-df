@@ -16,6 +16,27 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 8080 # Spring Boot usually defaults to 8080
+  # Optional multi-port configuration (overrides port/targetPort when set)
+  ports: []
+  # Example:
+  # ports:
+  #   - name: http
+  #     port: 7101
+  #     targetPort: 7101
+  #   - name: grpc
+  #     port: 7201
+  #     targetPort: 7201
+
+# 3b. Container Ports
+containerPorts: []
+# Example:
+# containerPorts:
+#   - name: http
+#     containerPort: 7101
+#     protocol: TCP
+#   - name: grpc
+#     containerPort: 7201
+#     protocol: TCP
 
 # 4. Resources (Default is SMALL to save RAM)
 resources:
