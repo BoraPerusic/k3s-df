@@ -165,3 +165,14 @@ kubectl create secret generic eso-bootstrap-auth \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-eso-bootstrap-auth.yaml > sealed-eso-bootstrap-auth.yaml
+
+# LLM Secrets
+kubectl create secret generic llm-gateway-creds \
+  --from-literal=azure-openai-api-key="apikey" \
+  --from-literal=llm-gtw-db-password="" \
+  --namespace auth \
+  --dry-run=client -o yaml > raw-llm-gateway-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-llm-gateway-creds.yaml > sealed-llm-gateway-creds.yaml

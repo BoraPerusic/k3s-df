@@ -1,6 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: infra
+
 helmGlobals:
   chartHome: ../../../../../blueprints
 
@@ -11,3 +13,14 @@ helmCharts:
     releaseName: llm-gateway
     namespace: infra
     valuesFile: values.yaml
+
+configMapGenerator:
+  - name: bp-dsk-env
+    envs:
+      - ../../../../../clusters/bp-dsk/bp-dsk.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+resources:
+  - sealed-llm-gateway-creds.yaml

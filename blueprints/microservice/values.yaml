@@ -31,6 +31,13 @@ env: {}
 # env:
 #   DB_HOST: "mssql-master"
 
+# 5b. Environment Sources
+envFrom: []
+# Example:
+# envFrom:
+#   - configMapRef:
+#       name: my-config
+
 # 6. Observability (Auto-injection toggles)
 observability:
   otlp:

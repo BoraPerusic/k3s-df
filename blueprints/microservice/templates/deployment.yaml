@@ -38,6 +38,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
+          {{- with .Values.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
           env:
             # 1. Inject Standard OTLP Variables (The Magic)
             {{- if .Values.observability.otlp.enabled }}
