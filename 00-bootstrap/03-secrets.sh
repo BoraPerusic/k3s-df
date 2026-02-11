@@ -168,9 +168,9 @@ kubeseal --controller-name=sealed-secrets-controller \
 
 # LLM Secrets
 kubectl create secret generic llm-gateway-creds \
-  --from-literal=azure-openai-api-key="apikey" \
+  --from-literal=azure-openai-api-key="api-key" \
   --from-literal=llm-gtw-db-password="" \
-  --namespace auth \
+  --namespace infra \
   --dry-run=client -o yaml > raw-llm-gateway-creds.yaml
 
 kubeseal --controller-name=sealed-secrets-controller \
