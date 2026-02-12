@@ -1,0 +1,40 @@
+replicaCount: 1
+
+image:
+  repository: tatrman.azurecr.io/eso-api
+  tag: "0.1.1"
+  pullPolicy: Always
+
+imagePullSecrets:
+ - name: acr-pull-secret-services
+
+service:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 7102
+      targetPort: 7102
+    - name: grpc
+      port: 7202
+      targetPort: 7202
+
+containerPorts:
+  - name: http
+    containerPort: 7102
+    protocol: TCP
+  - name: grpc
+    containerPort: 7202
+    protocol: TCP
+
+envFrom:
+  - configMapRef:
+      name: bp-dsk-env
+
+env:
+  - name: LOG_LEVEL
+    value: "DEBUG"
+  - name: ESO_API_DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: eso-api-creds
+        key: eso-api-db-password

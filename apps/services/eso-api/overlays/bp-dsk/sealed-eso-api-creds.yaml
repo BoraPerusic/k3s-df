@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: eso-api-creds
+  namespace: services
+spec:
+  encryptedData:
+    eso-api-db-password: AgDAepfHiWMiMEkM3gf2SRi0UcjC/FLdBijiDXigExHeMJFXUsdVErHlRnTWcVY7aBrn1OsAuaerUC4FCWQ0oq9V9tWytzyen4uoXk/AOMsiHSRByHLuafqKywvdSSEDE8bsrm0EOuHsthlUyTjOxoT9MxRe0I0GrX3BiJAUKhREPN0nrs2jpq3sWH4VAnmvUOgTsJUUPx6/FLTDzIPPCGZV9wjqM5FNaqreDpvODveXinUTpm6lTqJP3vuEMzBnaqBD1B+VTJ2GPP0Umk6gzXKCDyPPhGlyaZcclI09zCZoD78fM8IPy9bPKEB4NCNkRgLQfpHZwqm6Co7qymzR7RwLbt/h9kkH6Y0NAGQ1dKoUADNuHIHH7JAC3vI8NPeTGncGfHF32x1Wf+n7QapvWi144JO1OWa0SNnn5mu2ivEaBDY0/HscYpepGpuffimwYMdgLlodQtxVU3AXNDlexX/CFnCnqvquMIbdgDAQn/Vx0FrkewYgBgkCwhFb/htC92rCxQXvKlYfokRe+0Ef4Ax9C08hlNHjjwGBt27Zav6xfdutiNsGssc7bRN5vGRQgM9rZiJPYBWjl75MRd7G8DpNrfGkfd93C46bM2bG+VJUdFB3302p80NFJRKgTRMCLG4ht+y0sKwkQk57mAi1FLaxL8vhjNfds/LWKbqkTXI8bRTqsVQmXkPiHdB/JJNkZgvsxkLK5Inj
+  template:
+    metadata:
+      name: eso-api-creds
+      namespace: services

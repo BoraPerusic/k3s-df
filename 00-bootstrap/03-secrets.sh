@@ -176,3 +176,13 @@ kubectl create secret generic llm-gateway-creds \
 kubeseal --controller-name=sealed-secrets-controller \
   --controller-namespace=auth \
   --format=yaml < raw-llm-gateway-creds.yaml > sealed-llm-gateway-creds.yaml
+
+# ESO API
+kubectl create secret generic eso-api-creds \
+  --from-literal=eso-api-db-password="" \
+  --namespace services \
+  --dry-run=client -o yaml > raw-eso-api-creds.yaml
+
+kubeseal --controller-name=sealed-secrets-controller \
+  --controller-namespace=auth \
+  --format=yaml < raw-eso-api-creds.yaml > sealed-eso-api-creds.yaml
